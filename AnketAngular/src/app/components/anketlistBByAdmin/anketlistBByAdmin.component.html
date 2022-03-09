@@ -1,0 +1,57 @@
+<div class="containers">
+  <h1 style="margin-top: 30px; margin-left: 30px;">Anketler</h1>
+  <button mat-fab color="primary" style="margin-left: 10px;">
+    <mat-icon aria-label="label" matTooltip="Kullanici Ekle" (click)="AnketAdd()">add</mat-icon>
+  </button>
+  <p>&nbsp;</p>
+  <mat-form-field appearance="outline" style="margin-left: 20px;">
+    <input matInput placeholder="Aranacak Konuyu Giriniz" (keyup)="AnketFilter($event)">
+  </mat-form-field>
+  
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+    
+    <ng-container matColumnDef="AnketId" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Anket ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.AnketId}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="AnketAciklama" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Anket Açıklama 
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.AnketAciklama}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Konu" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Konusu
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.konuBilgi.KonuAdi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Olusturan" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Oluşturan Kullanıcı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.kullaniciBilgi.KullaniciAdi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> 
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="primary" matTooltip="Anketi Düzenle"  (click)="AnketUpdate(kayit)">edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="primary" matTooltip="Ankete Soru Gir" [routerLink]="['/anketsoruekle']" (click)="IdGonderme(kayit)" >add</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="warn" matTooltip="Anketi Sil" (click)="AnketRemove(kayit)">delete</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="accent" matTooltip="Anketi İstatistik" [routerLink]="['/anketistatistik',kayit.AnketId]">info</mat-icon>
+        </button>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator 
+    [pageSizeOptions]="[10, 25, 100]">
+  </mat-paginator>
+</div>

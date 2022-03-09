@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="48c18028b4d947ea9646dc6ced7bb302" Name="Diagram1">
+        <EntityTypeShape EntityType="AnketDBModel.Anket" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnketDBModel.AnketSecenekler" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnketDBModel.AnketSoru" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnketDBModel.Konular" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnketDBModel.SecilenCevaplar" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnketDBModel.Uye" Width="1.5" PointX="6.25" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="AnketDBModel.FK_Anket_ToKonu" ManuallyRouted="false" />
+        <AssociationConnector Association="AnketDBModel.FK_Anket_ToUye" ManuallyRouted="false" />
+        <AssociationConnector Association="AnketDBModel.FK_AnketSoru_ToAnket" ManuallyRouted="false" />
+        <AssociationConnector Association="AnketDBModel.FK_SecilenCevaplar_ToAnket" ManuallyRouted="false" />
+        <AssociationConnector Association="AnketDBModel.FK_AnketSecenekler_ToAnketSoru" ManuallyRouted="false" />
+        <AssociationConnector Association="AnketDBModel.FK_SecilenCevaplar_ToSecenek" ManuallyRouted="false" />
+        <AssociationConnector Association="AnketDBModel.FK_SecilenCevaplar_ToAnketSoru" ManuallyRouted="false" />
+        <AssociationConnector Association="AnketDBModel.FK_SecilenCevaplar_ToUye" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

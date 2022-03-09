@@ -1,0 +1,35 @@
+<div class="containers">
+  <h1 style="margin-top: 30px; margin-left: 30px;">Anketi Çözen Kişi Sayısı: {{cozenSayisi}}</h1>
+  
+  
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+    <ng-container matColumnDef="Soru" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Soru
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.Soru}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> 
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit" >
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="primary" matTooltip="Seçenek Seçim Dağılmını Göremek İçin Tıklayın"  (click)="SecilenSecenekSayi(kayit.AnketSoruId)">info</mat-icon>
+        </button >
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  
+  <mat-paginator 
+    [pageSizeOptions]="[10, 25, 100]">
+  </mat-paginator>
+
+</div>
+<div class="container">
+  <h3 [hidden]="!Goster"><b>{{aSecenek}}</b> Seçeneğinin Seçilme Sayısı: {{asayi}}</h3>
+
+  <h3 [hidden]="!Goster"><b>{{bSecenek}}</b> Seçeneğinin Seçilme Sayısı: {{bsayi}}</h3>
+  <h3 [hidden]="!Goster"><b>{{cSecenek}} </b>Seçeneğinin Seçilme Sayısı: {{csayi}}</h3>
+  <h3 [hidden]="!Goster"><b>{{dSecenek}}</b> Seçeneğinin Seçilme Sayısı: {{dsayi}}</h3>
+</div>
