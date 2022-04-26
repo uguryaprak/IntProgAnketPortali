@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AnketDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Anket">
+    <Key>
+      <PropertyRef Name="AnketId" />
+    </Key>
+    <Property Name="AnketId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KonuId" Type="int" Nullable="false" />
+    <Property Name="AnketAciklama" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="OlusturanKullanici" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AnketSecenekler">
+    <Key>
+      <PropertyRef Name="AnketSeceneklerId" />
+    </Key>
+    <Property Name="AnketSeceneklerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AnketSoruId" Type="int" Nullable="false" />
+    <Property Name="AnketSecenekYazi" Type="nvarchar" MaxLength="120" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AnketSoru">
+    <Key>
+      <PropertyRef Name="AnketSoruId" />
+    </Key>
+    <Property Name="AnketSoruId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AnketId" Type="int" Nullable="false" />
+    <Property Name="Soru" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Konular">
+    <Key>
+      <PropertyRef Name="KonuId" />
+    </Key>
+    <Property Name="KonuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KonuAdi" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SecilenCevaplar">
+    <Key>
+      <PropertyRef Name="SecCevId" />
+    </Key>
+    <Property Name="SecCevId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SecCevAnketId" Type="int" Nullable="false" />
+    <Property Name="SecCevSoruId" Type="int" Nullable="false" />
+    <Property Name="SecCevSecenekId" Type="int" Nullable="false" />
+    <Property Name="SecCevUyeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Uye">
+    <Key>
+      <PropertyRef Name="uyeId" />
+    </Key>
+    <Property Name="uyeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AdSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UyeAdmin" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Anket_ToKonu">
+    <End Role="Konular" Type="Self.Konular" Multiplicity="1" />
+    <End Role="Anket" Type="Self.Anket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Konular">
+        <PropertyRef Name="KonuId" />
+      </Principal>
+      <Dependent Role="Anket">
+        <PropertyRef Name="KonuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Anket_ToUye">
+    <End Role="Uye" Type="Self.Uye" Multiplicity="1" />
+    <End Role="Anket" Type="Self.Anket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uye">
+        <PropertyRef Name="uyeId" />
+      </Principal>
+      <Dependent Role="Anket">
+        <PropertyRef Name="OlusturanKullanici" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnketSecenekler_ToAnketSoru">
+    <End Role="AnketSoru" Type="Self.AnketSoru" Multiplicity="1" />
+    <End Role="AnketSecenekler" Type="Self.AnketSecenekler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnketSoru">
+        <PropertyRef Name="AnketSoruId" />
+      </Principal>
+      <Dependent Role="AnketSecenekler">
+        <PropertyRef Name="AnketSoruId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnketSoru_ToAnket">
+    <End Role="Anket" Type="Self.Anket" Multiplicity="1" />
+    <End Role="AnketSoru" Type="Self.AnketSoru" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anket">
+        <PropertyRef Name="AnketId" />
+      </Principal>
+      <Dependent Role="AnketSoru">
+        <PropertyRef Name="AnketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SecilenCevaplar_ToAnket">
+    <End Role="Anket" Type="Self.Anket" Multiplicity="1" />
+    <End Role="SecilenCevaplar" Type="Self.SecilenCevaplar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Anket">
+        <PropertyRef Name="AnketId" />
+      </Principal>
+      <Dependent Role="SecilenCevaplar">
+        <PropertyRef Name="SecCevAnketId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SecilenCevaplar_ToAnketSoru">
+    <End Role="AnketSoru" Type="Self.AnketSoru" Multiplicity="1" />
+    <End Role="SecilenCevaplar" Type="Self.SecilenCevaplar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnketSoru">
+        <PropertyRef Name="AnketSoruId" />
+      </Principal>
+      <Dependent Role="SecilenCevaplar">
+        <PropertyRef Name="SecCevSoruId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SecilenCevaplar_ToSecenek">
+    <End Role="AnketSecenekler" Type="Self.AnketSecenekler" Multiplicity="1" />
+    <End Role="SecilenCevaplar" Type="Self.SecilenCevaplar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnketSecenekler">
+        <PropertyRef Name="AnketSeceneklerId" />
+      </Principal>
+      <Dependent Role="SecilenCevaplar">
+        <PropertyRef Name="SecCevSecenekId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SecilenCevaplar_ToUye">
+    <End Role="Uye" Type="Self.Uye" Multiplicity="1" />
+    <End Role="SecilenCevaplar" Type="Self.SecilenCevaplar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uye">
+        <PropertyRef Name="uyeId" />
+      </Principal>
+      <Dependent Role="SecilenCevaplar">
+        <PropertyRef Name="SecCevUyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AnketDBModelStoreContainer">
+    <EntitySet Name="Anket" EntityType="Self.Anket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnketSecenekler" EntityType="Self.AnketSecenekler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnketSoru" EntityType="Self.AnketSoru" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Konular" EntityType="Self.Konular" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SecilenCevaplar" EntityType="Self.SecilenCevaplar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uye" EntityType="Self.Uye" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Anket_ToKonu" Association="Self.FK_Anket_ToKonu">
+      <End Role="Konular" EntitySet="Konular" />
+      <End Role="Anket" EntitySet="Anket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Anket_ToUye" Association="Self.FK_Anket_ToUye">
+      <End Role="Uye" EntitySet="Uye" />
+      <End Role="Anket" EntitySet="Anket" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnketSecenekler_ToAnketSoru" Association="Self.FK_AnketSecenekler_ToAnketSoru">
+      <End Role="AnketSoru" EntitySet="AnketSoru" />
+      <End Role="AnketSecenekler" EntitySet="AnketSecenekler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnketSoru_ToAnket" Association="Self.FK_AnketSoru_ToAnket">
+      <End Role="Anket" EntitySet="Anket" />
+      <End Role="AnketSoru" EntitySet="AnketSoru" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SecilenCevaplar_ToAnket" Association="Self.FK_SecilenCevaplar_ToAnket">
+      <End Role="Anket" EntitySet="Anket" />
+      <End Role="SecilenCevaplar" EntitySet="SecilenCevaplar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SecilenCevaplar_ToAnketSoru" Association="Self.FK_SecilenCevaplar_ToAnketSoru">
+      <End Role="AnketSoru" EntitySet="AnketSoru" />
+      <End Role="SecilenCevaplar" EntitySet="SecilenCevaplar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SecilenCevaplar_ToSecenek" Association="Self.FK_SecilenCevaplar_ToSecenek">
+      <End Role="AnketSecenekler" EntitySet="AnketSecenekler" />
+      <End Role="SecilenCevaplar" EntitySet="SecilenCevaplar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SecilenCevaplar_ToUye" Association="Self.FK_SecilenCevaplar_ToUye">
+      <End Role="Uye" EntitySet="Uye" />
+      <End Role="SecilenCevaplar" EntitySet="SecilenCevaplar" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AnketDBModelStoreContainer" CdmEntityContainer="AnketDBEntities">
+    <EntitySetMapping Name="Ankets">
+      <EntityTypeMapping TypeName="AnketDBModel.Anket">
+        <MappingFragment StoreEntitySet="Anket">
+          <ScalarProperty Name="AnketId" ColumnName="AnketId" />
+          <ScalarProperty Name="KonuId" ColumnName="KonuId" />
+          <ScalarProperty Name="AnketAciklama" ColumnName="AnketAciklama" />
+          <ScalarProperty Name="OlusturanKullanici" ColumnName="OlusturanKullanici" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnketSeceneklers">
+      <EntityTypeMapping TypeName="AnketDBModel.AnketSecenekler">
+        <MappingFragment StoreEntitySet="AnketSecenekler">
+          <ScalarProperty Name="AnketSeceneklerId" ColumnName="AnketSeceneklerId" />
+          <ScalarProperty Name="AnketSoruId" ColumnName="AnketSoruId" />
+          <ScalarProperty Name="AnketSecenekYazi" ColumnName="AnketSecenekYazi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnketSorus">
+      <EntityTypeMapping TypeName="AnketDBModel.AnketSoru">
+        <MappingFragment StoreEntitySet="AnketSoru">
+          <ScalarProperty Name="AnketSoruId" ColumnName="AnketSoruId" />
+          <ScalarProperty Name="AnketId" ColumnName="AnketId" />
+          <ScalarProperty Name="Soru" ColumnName="Soru" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Konulars">
+      <EntityTypeMapping TypeName="AnketDBModel.Konular">
+        <MappingFragment StoreEntitySet="Konular">
+          <ScalarProperty Name="KonuId" ColumnName="KonuId" />
+          <ScalarProperty Name="KonuAdi" ColumnName="KonuAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SecilenCevaplars">
+      <EntityTypeMapping TypeName="AnketDBModel.SecilenCevaplar">
+        <MappingFragment StoreEntitySet="SecilenCevaplar">
+          <ScalarProperty Name="SecCevUyeId" ColumnName="SecCevUyeId" />
+          <ScalarProperty Name="SecCevId" ColumnName="SecCevId" />
+          <ScalarProperty Name="SecCevAnketId" ColumnName="SecCevAnketId" />
+          <ScalarProperty Name="SecCevSoruId" ColumnName="SecCevSoruId" />
+          <ScalarProperty Name="SecCevSecenekId" ColumnName="SecCevSecenekId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uyes">
+      <EntityTypeMapping TypeName="AnketDBModel.Uye">
+        <MappingFragment StoreEntitySet="Uye">
+          <ScalarProperty Name="uyeId" ColumnName="uyeId" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="UyeAdmin" ColumnName="UyeAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
