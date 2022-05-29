@@ -1,0 +1,18 @@
+<div class="mt-5 ml-5" >
+  <h1>{{AnketAciklama}}</h1>
+  <h4>Konu: {{AnketKonu}}</h4>
+  <div style="margin-left: 20px;" *ngFor="let anketsorular of anketSorular; index as i; first as isFirst">
+    <label>Soru  {{i + 1 }} : {{anketsorular.Soru}}</label>
+    <mat-radio-group   style="margin-left: 10px;" aria-labelledby="example-radio-group-label" class="example-radio-group">
+      <mat-radio-button  (change)="onItemChange($event)"  class="example-radio-button" *ngFor="let anketsecenek of anketsorular.anketsorus; index as i; first as isFirst" [value]="anketsecenek.AnketSeceneklerId" >
+        {{anketsecenek.AnketSecenekYazi}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+    <h3>Anketi Çözdüğünüz İçin Teşekkürler Kaydetmek İçin Kaydet Buttonuna Basmanız Yeterli.</h3>
+    <button style="margin-bottom: 20px;" mat-raised-button color="primary" (click)="Kaydet()">Kaydet </button>
+
+  
+</div>
+
+

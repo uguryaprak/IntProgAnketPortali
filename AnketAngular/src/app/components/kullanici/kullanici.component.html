@@ -1,0 +1,55 @@
+<div class="containers">
+  <h1 >Kullanıcılar</h1>
+  <button mat-fab color="primary">
+    <mat-icon aria-label="label" matTooltip="Kullanici Ekle" (click)="KullaniciAdd()">add</mat-icon>
+  </button>
+  <p>&nbsp;</p>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Aranacak Kullanıcıyı Giriniz" (keyup)="KullaniciFilter($event)">
+  </mat-form-field>
+  
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+    
+    
+    <ng-container matColumnDef="KullaniciAdi" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Kullanici Adı 
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.KullaniciAdi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="AdSoyad" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ad Soyad 
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.AdSoyad}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Email" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Email
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.Email}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Sifre" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Şifre 
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.Sifre}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> 
+      <button mat-icon-button>
+        <mat-icon aria-label="label" color="primary" matTooltip="Kullanici Düzenle"  (click)="KullaniciUpdate(kayit)">edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon aria-label="label" color="warn" matTooltip="Kullanici Sil" (click)="KullaniciRemove(kayit)">delete</mat-icon>
+      </button>
+      
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+  </mat-table>
+  <mat-paginator 
+    [pageSizeOptions]="[10, 25, 100]">
+  </mat-paginator>
+</div>

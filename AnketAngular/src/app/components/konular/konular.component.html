@@ -1,0 +1,43 @@
+<div class="containers">
+  <h1 >Konular</h1>
+  <button mat-fab color="primary"*ngIf="apiServis.adminKontrol()">
+    <mat-icon aria-label="label" matTooltip="Konu Ekle"  (click)="KonuAdd()">add</mat-icon>
+  </button>
+  <p>&nbsp;</p>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Aranacak Konuyu Giriniz" (keyup)="KonuFilter($event)">
+  </mat-form-field>
+  
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+    
+    <ng-container matColumnDef="KonuId" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Konu ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.KonuId}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="KonuAdi" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Konu Adı 
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.KonuAdi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler" >
+      <mat-header-cell *matHeaderCellDef > İşlemler 
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit" > 
+      <button mat-icon-button>
+        <mat-icon aria-label="label" color="primary" matTooltip="Konu Düzenle" *ngIf="apiServis.adminKontrol()"  (click)="KonuUpdate(kayit)">edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon aria-label="label" color="warn" matTooltip="Konu Sil" *ngIf="apiServis.adminKontrol()" (click)="KonuRemove(kayit)">delete</mat-icon>
+      </button>
+      
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    
+  </mat-table>
+  <mat-paginator 
+    [pageSizeOptions]="[10, 25, 100]">
+  </mat-paginator>
+</div>

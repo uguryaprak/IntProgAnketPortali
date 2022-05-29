@@ -1,0 +1,33 @@
+  <div class="container " style="margin-top: 250px; max-width: 300px;"> 
+    <mat-card class="example-card" >
+        <mat-card-title>Kayıt Olma Formu</mat-card-title>
+        <mat-card-subtitle style="margin-top: 5px;">
+          <mat-form-field appearance="outline">
+            <mat-label>Kullanıcı Adı</mat-label>
+            <input matInput placeholder="Kullanıcı Adı" type="text" #KullaniciAdi>
+          </mat-form-field>
+        </mat-card-subtitle>
+        <mat-card-subtitle> 
+          <mat-form-field appearance="outline">
+            <mat-label>Ad Soyad</mat-label>
+            <input matInput placeholder="Ad Soyad" type="text" #adSoyad>
+          </mat-form-field>
+        </mat-card-subtitle>
+        <mat-card-subtitle>   
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" type="email" #email>
+          </mat-form-field>
+        </mat-card-subtitle>
+        <mat-card-subtitle>   
+          <mat-form-field appearance="outline">
+            <mat-label>Şifre</mat-label>
+            <input matInput placeholder="Şifre" type="password" #parola>
+          </mat-form-field>
+        </mat-card-subtitle>
+      <mat-card-actions>
+    <button mat-raised-button color="primary"  (click)="KayitOl(KullaniciAdi.value, parola.value, adSoyad.value, email.value)">Kayıt Ol</button>
+
+      </mat-card-actions>
+    </mat-card>
+  </div>

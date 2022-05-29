@@ -1,0 +1,30 @@
+<div style="margin-top: 20px; margin-left: 30px;">
+  <h1>Anket Soru Ekle</h1>
+    
+  <div class="form-group ">
+    <label for="my-input">Soru</label>
+    <input id="soru" class="form-control" type="text" name="soru" style="max-width: 500px;" #soru>
+  </div>
+  <div class="form-group mt-2">
+    <label for="my-input">Seçenek A)</label>
+    <input id="secA" class="form-control" type="text" name="secA" style="max-width: 500px;" #secA>
+  </div>
+  <div class="form-group mt-2">
+    <label for="my-input">Seçenek B)</label>
+    <input id="secB" class="form-control" type="text" name="secB" style="max-width: 500px;"#secB>
+  </div>
+  <div class="form-group mt-2">
+    <label for="my-input">Seçenek C)</label>
+    <input id="secC" class="form-control" type="text" name="secC" style="max-width: 500px;" #secC>
+  </div>
+  <div class="form-group mt-2">
+    <label for="my-input">Seçenek D)</label>
+    <input id="secD" class="form-control" type="text" name="secD" style="max-width: 500px;"#secD>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" (click)="Kaydet(soru.value,secA.value,secB.value,secC.value,secD.value)" class="mt-2">Kaydet</button>
+    &nbsp;
+    <button mat-raised-button color="warn" (click)="soru.value=' '"(click)="secA.value=' '"(click)="secB.value=' '"(click)="secC.value=' '"(click)="secD.value=' '" >Temizle</button>
+  </div>
+</div>
+

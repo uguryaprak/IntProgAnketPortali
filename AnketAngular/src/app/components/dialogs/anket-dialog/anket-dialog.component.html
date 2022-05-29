@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container">
+  <form [formGroup]="frm">
+  <mat-form-field appearance="outline"style="margin-left: 20px;">
+    <mat-select  placeholder="Konu" formControlName="KonuId" name="KonuId" (selectionChange)="KonuSec($event.value)">
+      <mat-option [value]="konular.KonuId" *ngFor="let konular of konu"> {{konular.KonuAdi}}</mat-option>
+    </mat-select> 
+  </mat-form-field>
+  <mat-form-field appearance="outline" style="margin-left: 20px;">
+    <mat-label>Açıklama</mat-label>
+    <textarea  rows="8" cols="50" matInput placeholder="Açıklama" formControlName="AnketAciklama" name="AnketAciklama" required type="text"></textarea>
+  </mat-form-field>
+</form>
+<button style="margin-left: 20px;" mat-raised-button color="primary" [disabled]="frm.invalid" (click)="dialogRef.close(frm.value)">Kaydet</button>&nbsp;
+<button style="margin-left: 20px;" mat-raised-button color="warn" (click)="dialogRef.close()">İptal</button>
+
+</div>
